@@ -47,7 +47,6 @@ const server = http.createServer((req, res) => {
     }
 
 });
-
 server.listen(port, () => {
     console.log('서버 실행중... 중지하려면 ctrl+c를 눌러요!');
 });

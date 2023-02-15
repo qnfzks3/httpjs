@@ -7,8 +7,7 @@ const path = require('path');
 router.get('/',(req, res)=>{    //서버 요청 app-> router
     res.sendFile(path.join(__dirname,'../public','index.html'));  //__dirname 는 현재 파일 index.js의 경로를 나타낸다.
                                                                   // 또한  '../public/index.html'에서
-                                                                  // 경로를 / 대신에,로 '../public','index.html'이렇게 쓴다.
-
+                                                                  // 경로를 / 대신에,로 '../public','index.html'이렇게 쓴다
 });
 
 

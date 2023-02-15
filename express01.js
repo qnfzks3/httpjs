@@ -12,7 +12,7 @@ app.get('/user/add', (req, res)=>{    //서버 요청  about
 });
 
 //routing path 추가분 - 파일이 복잡해짐!
-app.get('/user/view', (req, res)=>{
+app.get('/user/view', (req, res)=>{       ///user/view 는 경로
 
     res.type(html);
     res.end('<h1>user 상세정보 페이지입니다.</h1>');

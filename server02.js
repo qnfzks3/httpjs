@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 //그외 나머지 : 404 - 페이지 없음
 
 const html ='text/html; charset=utf-8';
-const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) => {   //이런 내용의 서버를 만든다.
 
     switch (req.url){
         case '/' :
