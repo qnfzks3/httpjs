@@ -14,6 +14,28 @@ router.get('/',(req, res)=>{    //서버 요청 app-> router
 
 });
 
+router.get('/sungjuk',(req, res)=>{    //서버 요청 app-> router
+    res.render('sungjuk',{title:'성적처리'})    /*view 이름*/
+
+});
+
+router.post('/sungjuk',(req, res)=>{    //서버 요청 app-> router
+    //폼으로 전송된 데이터들은 req.body, req.body.폼 이름 등으로 확인 가능  - 왜냐면 req에 전송되니까.- json 형식으로하면 -정상적으로 인식함
+    
+    //console.log(req.body);
+    //console.log(req.body.name,req.body.kor,req.body.eng,req.body.mat);
+    let {name,kor,eng,mat}=req.body;
+    console.log(name,kor,eng,mat);
+    res.redirect(304,'/');
+
+   let [tot, avg ,grd] =[kor+eng+mat,(kor+eng+mat)/3,'가'];
+   console.log(tot,avg,grd);
+
+   //데이터베이스 처리 - sungjuk 테이블에 insert
+
+
+});
+
 
 
 /*

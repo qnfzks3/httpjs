@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const path = require('path');
 const logger=require('morgan');  //로그를 콘솔에 출력기
 const {engine} = require('express-handlebars')
+const bodyParser=require('body-parser'); //폼 처리기
 
 //view 템플릿 엔진 설정
 app.engine('hbs',engine({
@@ -16,8 +17,7 @@ app.engine('hbs',engine({
             this._sections[name] = options.fn(this)
             return null
         },
-    },
-
+    }
 
 }));
 app.set('views',path.join(__dirname,'views'));  /*view 파일들이 들어있는곳에서*/
@@ -38,9 +38,16 @@ app.use(express.static(path.join(__dirname,'static')));   // static에 있는 �
 //로그 설정
 app.use(logger('dev'));
 
+//미들웨이 등록 및 설정
+app.use(express.json());
+
+//전송된 폼 데이터에 대한 urlencoding 설정
+app.use(express.urlencoded({extended:false}));   //반드시 이 두개가 있어야
+app.use(bodyParser.json());  //전송된 폼 데이터는 json 형식                   넘어올수 있다.
 
 
-// index 에 대한 route handler 지정
+
+// index 에 대한 route handler 지정                  route = 외부에서 요청이 오면 그 요청에 적합한 데이터를 서버에서 안내하는 함수
 
 
 app.use('/',indexRouter);
