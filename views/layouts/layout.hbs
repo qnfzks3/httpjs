@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{{index}}</title>
+    {{{ _sections.css }}}       <!--_sections . (s를 붙여야한다.)를  생성하고 싶은 블럭 선택-->
 
 </head>
 <body>
-<header>헤더</header>
+{{> header}}
+
     {{{body}}}
 
+{{> footer}}
 
 
-
-<gooter></gooter>
-<script></script>
+{{{ _sections.script }}}
 
 
 

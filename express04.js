@@ -9,8 +9,17 @@ const {engine} = require('express-handlebars')
 //view 템플릿 엔진 설정
 app.engine('hbs',engine({
     extname:'.hbs',
-    defaultLayout:'layout'
-}))
+    defaultLayout:'layout',
+    helpers: {
+        section: function(name, options) {
+            if(!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this)
+            return null
+        },
+    },
+
+
+}));
 app.set('views',path.join(__dirname,'views'));  /*view 파일들이 들어있는곳에서*/
 app.set('view engine','hbs');                    /*엔진 hbs(헨들바스)를 사용하겠다.*/
 
