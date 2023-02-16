@@ -1,9 +1,19 @@
 const express= require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const html ='text/html; charset=utf-8';
+
 const path = require('path');
 const logger=require('morgan');  //로그를 콘솔에 출력기
+const {engine} = require('express-handlebars')
+
+//view 템플릿 엔진 설정
+app.engine('hbs',engine({
+    extname:'.hbs',
+    defaultLayout:'layout'
+}))
+app.set('views',path.join(__dirname,'views'));  /*view 파일들이 들어있는곳에서*/
+app.set('view engine','hbs');                    /*엔진 hbs(헨들바스)를 사용하겠다.*/
+
 
 //라우팅 외부 작성
 
@@ -13,7 +23,7 @@ const aboutRouter=require('./routes/about');
 
 
 //라우팅을 거치지 않고 직접 호출해서 응답
-app.use(express.static(path.join(__dirname,'static')));   // static  에 있는 모든 파일은 router을 쓰지않고 사용
+app.use(express.static(path.join(__dirname,'static')));   // static에 있는 모든 파일은 router을 쓰지않고 사용
 
 
 //로그 설정
@@ -41,6 +51,7 @@ app.use((req,res)=>{
 //500 처리
 
 app.use((err,req,res,next)=>{
+    console.log(err)
     res.status(500);  //상태
     res.sendFile(path.join(__dirname,'public','500.html'))
 })
