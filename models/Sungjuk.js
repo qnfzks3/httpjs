@@ -1,6 +1,13 @@
 const oracledb=require('../models/Oracle');
 
 class Sungjuk{
+
+    options = {  //select로 결과를 출력하기위해선 이 옵션이 있어야함
+        resultSet: true,
+        outFormat: oracledb.OUT_FORMAT_OBJECT
+    };
+
+    selectsql='select sjno,name,kor,eng,mat,regdate from sungjuk order by sjno desc';
     
 
     //생성자 정의 - 변수 초기화
@@ -40,10 +47,35 @@ class Sungjuk{
     };
 
     //성적 전체 조회 list
-    select(){}
+    async select(){
+        let conn=null;
+        let result=null;
+
+        try{
+            conn=await oracledb.makeConn();
+            result=conn.execute(this.selectsql,[],this.options);
+            let rs=result.resultSet;
+            let row=null;
+            while ((row=await rs.getRow())){
+                result= new Sungjuk(row[1],rs[2],rs[3],rs[4],);
+                result.sjno=row[0];
+                result.regdate=row[5];
+
+            }
+
+        }catch (e){
+            console.log(e);
+        }finally {
+            await oracledb.closeConn(conn);
+        }
+        return await result;
+
+    }
 
     //성적 조회 view
-    selectOne(sjno){}
+    selectOne(sjno){
+
+    }
     
 }
 

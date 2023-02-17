@@ -24,9 +24,12 @@ router.get('/sungjuk',(req, res)=>{    //서버 요청 app-> router
 
 });
 
+
+
 router.post('/sungjuk', (req, res)=>{    //서버 요청 app-> router
     //폼으로 전송된 데이터들은 req.body, req.body.폼 이름 등으로 확인 가능  - 왜냐면 req에 전송되니까.- json 형식으로하면 -정상적으로 인식함
-    
+
+
     //console.log(req.body);
     //console.log(req.body.name,req.body.kor,req.body.eng,req.body.mat);
     let {name,kor,eng,mat}=req.body;
@@ -53,7 +56,12 @@ router.post('/sungjuk', (req, res)=>{    //서버 요청 app-> router
 
 });
 
+router.get('/showsungjuk',(req, res)=>{    //서버 요청 app-> router
 
+    let sjs=new SungJuk().select().then();
+    res.render('showsungjuk ',{title:'성적전체보기',sjs: sjs})    /*view 이름*/
+
+});
 
 /*
 router.get('/smile.png',(req, res)=>{
