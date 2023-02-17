@@ -6,6 +6,8 @@ const path = require('path');
 const logger=require('morgan');  //로그를 콘솔에 출력기
 const {engine} = require('express-handlebars')
 const bodyParser=require('body-parser'); //폼 처리기
+const oracledb=require('./models/Oracle')
+
 
 //view 템플릿 엔진 설정
 app.engine('hbs',engine({
@@ -44,6 +46,7 @@ app.use(express.json());
 //전송된 폼 데이터에 대한 urlencoding 설정
 app.use(express.urlencoded({extended:false}));   //반드시 이 두개가 있어야
 app.use(bodyParser.json());  //전송된 폼 데이터는 json 형식                   넘어올수 있다.
+oracledb.initConn();
 
 
 
