@@ -16,6 +16,19 @@ router.get('/sungjuk', (req, res) => {
     res.render('sungjuk', {title: '성적처리'});
 });
 
+router.get('/viewsungjuk', async(req, res) => {
+    // 응답으로 지정한 파일의 내용을 전송함
+    // res.sendFile(path.join(__dirname, '../public', 'index.html'));
+    // handlebars 뷰 엔진으로 응답처리
+    let sjno=req.query.sjno;   //querystring 매개변수 추출
+    let sjs=new SungJuk().selectOne(sjno).then(async result =>{return await result;});
+    console.log(await sjs);
+
+
+    res.render('viewsungjuk', {title: '성적 상세보기', sjs:await sjs});
+});
+
+
 router.post('/sungjuk', (req, res, next) => {
     // 폼으로 전송된 데이터들은 req.body, req.body.폼이름 등으로 확인 가능
     //console.log(req.body);

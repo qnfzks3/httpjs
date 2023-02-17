@@ -10,7 +10,11 @@
         <th>영어</th><th>수학</th><th>등록일</th></tr>
     <!-- 리스트행 시작 -->
     {{#sjs}}
-        <tr><td>{{sjno}}</td><td>{{name}}</td><td>{{kor}}</td>
-            <td>{{eng}}</td><td>{{mat}}</td><td>{{regdate}}</td></tr>
+        <tr>
+            <td>{{sjno}}</td>
+            <td><a href="/viewsungjuk?sjno={{sjno}}">{{name}}</a></td>    <!--초가 뜬다.-->
+            <td>{{kor}}</td>
+            <td>{{eng}}</td><td>{{mat}}</td><td>{{regdate}}</td>
+        </tr>
     {{/sjs}}
 </table>
