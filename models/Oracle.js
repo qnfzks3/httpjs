@@ -1,4 +1,4 @@
-const oracledb=require('oracledb');
+const oracledb=require('oracledb');   //데이터와 상호작용하는 모듈
 const dbconfig=require('../dbconfig');
 
 const Oracle ={

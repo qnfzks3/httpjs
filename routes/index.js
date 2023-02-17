@@ -37,6 +37,11 @@ router.post('/sungjuk', (req, res)=>{    //서버 요청 app-> router
 
 
    let [tot, avg ,grd] =[kor+eng+mat,(kor+eng+mat)/3,'가'];
+    if (avg >= 90) grd = '수';
+    else if (avg >= 80) grd = '우';
+    else if (avg >= 70) grd = '미';
+    else if (avg >= 60) grd = '양';
+    console.log(tot, avg, grd);
 
 
    console.log(tot,avg,grd);
